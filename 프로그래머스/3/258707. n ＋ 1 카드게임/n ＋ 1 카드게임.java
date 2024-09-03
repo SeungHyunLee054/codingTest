@@ -20,7 +20,7 @@ class Solution {
             boolean flag = false;
             for (int drawCard : drawCards) {
                 int p = (n + 1) - drawCard;
-                if (drawCards.contains(p) && p != drawCard) {
+                if (drawCards.contains(p)) {
                     drawCards.remove(Integer.valueOf(p));
                     drawCards.remove(Integer.valueOf(drawCard));
                     flag = true;
@@ -36,7 +36,7 @@ class Solution {
             if (coin >= 1) {
                 for (int drawCard : drawCards) {
                     int p = (n + 1) - drawCard;
-                    if (newCards.contains(p) && p != drawCard) {
+                    if (newCards.contains(p)) {
                         drawCards.remove(Integer.valueOf(drawCard));
                         newCards.remove(Integer.valueOf(p));
                         flag = true;
@@ -54,7 +54,7 @@ class Solution {
             if (coin >= 2) {
                 for (int newCard : newCards) {
                     int p = (n + 1) - newCard;
-                    if (newCards.contains(p) && p != newCard) {
+                    if (newCards.contains(p)) {
                         newCards.remove(Integer.valueOf(newCard));
                         newCards.remove(Integer.valueOf(p));
                         flag = true;
