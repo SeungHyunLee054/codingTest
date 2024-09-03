@@ -11,13 +11,11 @@ class Solution {
         List<Integer> newCards = new ArrayList<>();
 
         int idx = n / 3;
-        while (idx<n) {
-            if (idx + 1 < n) {
-                int newCard1 = cards[idx];
-                int newCard2 = cards[idx + 1];
-                newCards.add(newCard1);
-                newCards.add(newCard2);
-            }
+        while (idx < n) {
+            int newCard1 = cards[idx];
+            int newCard2 = cards[idx + 1];
+            newCards.add(newCard1);
+            newCards.add(newCard2);
 
             boolean flag = false;
 
