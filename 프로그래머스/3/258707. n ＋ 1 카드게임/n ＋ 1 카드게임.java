@@ -18,12 +18,11 @@ class Solution {
             newCards.add(newCard2);
 
             boolean flag = false;
-
-            for (int i = 0; i < drawCards.size(); i++) {
-                int p = (n + 1) - drawCards.get(i);
-                if (drawCards.contains(p) && p != drawCards.get(i)) {
+            for (int drawCard : drawCards) {
+                int p = (n + 1) - drawCard;
+                if (drawCards.contains(p) && p != drawCard) {
                     drawCards.remove(Integer.valueOf(p));
-                    drawCards.remove(drawCards.get(i));
+                    drawCards.remove(Integer.valueOf(drawCard));
                     flag = true;
                     answer += 1;
                     idx += 2;
@@ -35,10 +34,10 @@ class Solution {
             }
 
             if (coin >= 1) {
-                for (int i = 0; i < drawCards.size(); i++) {
-                    int p = (n + 1) - drawCards.get(i);
-                    if (newCards.contains(p) && p != drawCards.get(i)) {
-                        drawCards.remove(drawCards.get(i));
+                for (int drawCard : drawCards) {
+                    int p = (n + 1) - drawCard;
+                    if (newCards.contains(p) && p != drawCard) {
+                        drawCards.remove(Integer.valueOf(drawCard));
                         newCards.remove(Integer.valueOf(p));
                         flag = true;
                         coin -= 1;
@@ -53,10 +52,10 @@ class Solution {
             }
 
             if (coin >= 2) {
-                for (int i = 0; i < newCards.size(); i++) {
-                    int p = (n + 1) - newCards.get(i);
-                    if (newCards.contains(p) && p != newCards.get(i)) {
-                        newCards.remove(newCards.get(i));
+                for (int newCard : newCards) {
+                    int p = (n + 1) - newCard;
+                    if (newCards.contains(p) && p != newCard) {
+                        newCards.remove(Integer.valueOf(newCard));
                         newCards.remove(Integer.valueOf(p));
                         flag = true;
                         coin -= 2;
