@@ -2,7 +2,6 @@ class Solution {
     private final int MOD = 10007;
 
     public int solution(int n, int[] tops) {
-        int answer = 0;
         int[] dp = new int[n + 1];
         dp[0] = 1;
         for (int i = 0; i < n; i++) {
@@ -15,8 +14,7 @@ class Solution {
                 dp[j] = (triangle * dp[i] - dp[i - 1] + MOD) % MOD;
             }
         }
-        answer = dp[n];
-
-        return answer;
+        
+        return dp[n] % MOD;
     }
 }
