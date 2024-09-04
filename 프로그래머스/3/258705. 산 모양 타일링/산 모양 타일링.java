@@ -15,7 +15,7 @@ class Solution {
                 dp[j] = (triangle * dp[i] - dp[i - 1] + MOD) % MOD;
             }
         }
-        answer = dp[n] % MOD;
+        answer = dp[n];
 
         return answer;
     }
