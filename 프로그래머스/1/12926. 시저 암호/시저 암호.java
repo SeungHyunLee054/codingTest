@@ -11,14 +11,9 @@ class Solution {
             int ascii = s.charAt(i);
             int forwardAscii = ascii + n;
 
-            if (ascii <= 90 && forwardAscii > 90) {
+            if ((ascii <= 90 && forwardAscii > 90) || forwardAscii > 122) {
                 forwardAscii -= 26;
             }
-
-            if (forwardAscii > 122) {
-                forwardAscii -= 26;
-            }
-
 
             sb.append((char) forwardAscii);
         }
