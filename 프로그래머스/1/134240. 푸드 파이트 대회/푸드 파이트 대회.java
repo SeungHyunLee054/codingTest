@@ -7,11 +7,7 @@ class Solution {
         List<Integer> list = new ArrayList<>();
 
         for (int f : food) {
-            if (f % 2 != 0) {
-                list.add((f - 1) / 2);
-            } else {
-                list.add(f / 2);
-            }
+            list.add(f / 2);
         }
 
         for (int i = 1; i < list.size(); i++) {
