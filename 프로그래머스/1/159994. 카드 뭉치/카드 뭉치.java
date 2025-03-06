@@ -1,17 +1,5 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 class Solution {
     public String solution(String[] cards1, String[] cards2, String[] goal) {
-        List<String> cardList = new ArrayList<>();
-        cardList.addAll(Arrays.asList(cards1));
-        cardList.addAll(Arrays.asList(cards2));
-        List<String> goalList = new ArrayList<>(Arrays.asList(goal));
-        if (!cardList.containsAll(goalList)) {
-            return "No";
-        }
-
         int idx = 0;
         int c1Idx = 0;
         int c2Idx = 0;
