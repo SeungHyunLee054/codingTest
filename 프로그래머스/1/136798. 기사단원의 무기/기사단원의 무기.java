@@ -23,16 +23,9 @@ class Solution {
             list.add(count);
         }
 
-        int sum = 0;
-        int count = 0;
-        for (Integer i : list) {
-            if (i <= limit) {
-                sum += i;
-            } else {
-                count++;
-            }
-        }
-        answer = sum + (count * power);
+        int sum = list.stream().filter(x -> x <= limit).mapToInt(x -> x).sum();
+        long count = list.stream().filter(x -> x > limit).count();
+        answer = (int) (sum + (count * power));
 
         return answer;
     }
