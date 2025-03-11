@@ -21,11 +21,8 @@ class Solution {
 
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i <= 9; i++) {
-            if (mapX.containsKey(i) && mapY.containsKey(i)) {
-                for (int j = 0; j < Math.min(mapX.get(i), mapY.get(i)); j++) {
-                    list.add(i);
-                }
-
+            for (int j = 0; j < Math.min(mapX.get(i), mapY.get(i)); j++) {
+                list.add(i);
             }
         }
 
