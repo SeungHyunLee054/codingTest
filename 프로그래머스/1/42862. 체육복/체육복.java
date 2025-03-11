@@ -6,8 +6,7 @@ class Solution {
 
         Arrays.sort(lost);
         Arrays.sort(reserve);
-        
-        
+
         for (int i = 0; i < lost.length; i++) {
             for (int j = 0; j < reserve.length; j++) {
                 if (lost[i] == reserve[j]) {
@@ -28,7 +27,6 @@ class Solution {
                 }
             }
         }
-
 
         return answer;
     }
