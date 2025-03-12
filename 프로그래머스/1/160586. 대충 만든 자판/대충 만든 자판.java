@@ -1,31 +1,26 @@
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 class Solution {
     public int[] solution(String[] keymap, String[] targets) {
         int[] answer = new int[targets.length];
 
-        int clickCnt = Integer.MAX_VALUE;
+        Map<Character, Integer> map = new HashMap<>();
+        for (String s : keymap) {
+            for (int j = 0; j < s.length(); j++) {
+                map.put(s.charAt(j), Math.min(map.getOrDefault(s.charAt(j), j + 1), j + 1));
+            }
+        }
+
         for (int i = 0; i < targets.length; i++) {
             for (int j = 0; j < targets[i].length(); j++) {
-                String tSub = targets[i].substring(j, j + 1);
-                for (String s : keymap) {
-                    if (s.contains(tSub)) {
-                        for (int l = 0; l < s.length(); l++) {
-                            String sSub = s.substring(l, l + 1);
-                            if (sSub.equals(tSub)) {
-                                clickCnt = Math.min(clickCnt, l + 1);
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (clickCnt != Integer.MAX_VALUE) {
-                    answer[i] += clickCnt;
+                char tmp = targets[i].charAt(j);
+                if (map.containsKey(tmp)) {
+                    answer[i] += map.get(tmp);
                 } else {
                     answer[i] = -1;
                     break;
                 }
-                clickCnt = Integer.MAX_VALUE;
             }
         }
 
