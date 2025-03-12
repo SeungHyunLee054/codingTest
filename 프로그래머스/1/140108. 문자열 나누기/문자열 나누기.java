@@ -5,7 +5,6 @@ class Solution {
         char x = s.charAt(0);
         int equalCnt = 1;
         int notEqualCnt = 0;
-        String copyStr = s;
 
         int idx = 1;
         int len = s.length();
@@ -13,9 +12,9 @@ class Solution {
             answer++;
         }
         while (idx < len) {
-            if (x == copyStr.charAt(idx)) {
+            if (x == s.charAt(idx)) {
                 equalCnt++;
-            } else if (x != copyStr.charAt(idx)) {
+            } else if (x != s.charAt(idx)) {
                 notEqualCnt++;
             }
 
@@ -24,10 +23,8 @@ class Solution {
                 if (idx + 1 >= len) {
                     break;
                 }
-                copyStr = copyStr.substring(idx + 1);
-                x = copyStr.charAt(0);
-                len = copyStr.length();
-                idx = 0;
+                x = s.charAt(idx + 1);
+                idx++;
                 equalCnt = 1;
                 notEqualCnt = 0;
             }
