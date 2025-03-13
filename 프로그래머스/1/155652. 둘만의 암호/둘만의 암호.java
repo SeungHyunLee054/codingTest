@@ -5,13 +5,11 @@ class Solution {
         for (char c : s.toCharArray()) {
             int cnt = 0;
             while (cnt < index) {
-                char nextC = (char) (c > 121 ? c - 25 : c + 1);
+                c = (char) (c > 121 ? c - 25 : c + 1);
 
-                if (!skip.contains(String.valueOf(nextC))) {
+                if (!skip.contains(String.valueOf(c))) {
                     cnt++;
                 }
-
-                c = nextC;
             }
 
             sb.append(c);
