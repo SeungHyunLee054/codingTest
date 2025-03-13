@@ -1,31 +1,20 @@
 class Solution {
     public String solution(String s, String skip, int index) {
         StringBuilder sb = new StringBuilder();
-        boolean flag = false;
 
-        for (int i = 0; i < s.length(); i++) {
-            int ascii = s.charAt(i);
+        for (char c : s.toCharArray()) {
+            int cnt = 0;
+            while (cnt < index) {
+                char nextC = (char) (c > 121 ? c - 25 : c + 1);
 
-            int j = 0;
-            int repeat = index;
-            while (j < repeat) {
-                int nextAscii = ascii > 121 ? ascii - 25 : ascii + 1;
-                for (int k = 0; k < skip.length(); k++) {
-                    if (nextAscii == skip.charAt(k)) {
-                        flag = true;
-                        break;
-                    }
+                if (!skip.contains(String.valueOf(nextC))) {
+                    cnt++;
                 }
 
-                if (flag) {
-                    repeat += 1;
-                    flag = false;
-                }
-
-                ascii = nextAscii;
-                j++;
+                c = nextC;
             }
-            sb.append((char) ascii);
+
+            sb.append(c);
         }
 
         return sb.toString();
