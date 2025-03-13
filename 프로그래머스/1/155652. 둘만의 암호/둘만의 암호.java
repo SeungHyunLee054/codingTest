@@ -25,12 +25,6 @@ class Solution {
                 ascii = nextAscii;
                 j++;
             }
-
-            if (ascii > 122) {
-                ascii -= 26;
-            }
-
-
             sb.append((char) ascii);
         }
 
