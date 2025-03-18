@@ -29,13 +29,13 @@ class Solution {
                             continue logicLoop;
                         }
                     }
-                    
+
                     x += dx[k] * n;
                     y += dy[k] * n;
                 }
             }
         }
-        
+
         int[] answer = new int[2];
         answer[0] = x;
         answer[1] = y;
