@@ -4,45 +4,40 @@ class Solution {
     public int[] solution(String[] id_list, String[] report, int k) {
         Map<String, Set<String>> reportMap = new HashMap<>();
         Map<String, Integer> reportedMap = new HashMap<>();
-        List<Integer> answer = new ArrayList<>();
+        Map<String, Integer> resultMap = new HashMap<>();
 
         for (String id : id_list) {
+            reportMap.put(id, new HashSet<>());
             reportedMap.put(id, 0);
-            answer.add(0);
+            resultMap.put(id, 0);
         }
 
         for (String r : report) {
             String[] rSplit = r.split(" ");
-            reportMap.put(rSplit[0], reportMap.getOrDefault(rSplit[0], new HashSet<>()));
-            reportMap.get(rSplit[0]).add(rSplit[1]);
-        }
-
-        for (Set<String> reportedUsers : reportMap.values()) {
-            for (String user : reportedUsers) {
-                reportedMap.put(user, reportedMap.get(user) + 1);
+            if (reportMap.get(rSplit[0]).add(rSplit[1])) {
+                reportedMap.put(rSplit[1], reportedMap.get(rSplit[1]) + 1);
             }
-
         }
 
+        List<String> bannedUsers = new ArrayList<>();
+        for (String user : id_list) {
+            if (reportedMap.get(user) >= k) {
+                bannedUsers.add(user);
+            }
+        }
 
-        for (int i = 0; i < id_list.length; i++) {
-            String reportedUser = id_list[i];
-            if (reportedMap.get(reportedUser) >= k) {
-                // answer.set(i, answer.get(i) + 1);
-
-                for (String user : reportMap.keySet()) {
-                    if (reportMap.get(user).contains(reportedUser)) {
-                        for (int j = 0; j < id_list.length; j++) {
-                            if (id_list[j].equals(user)) {
-                                answer.set(j, answer.get(j) + 1);
-                                break;
-                            }
-                        }
-                    }
+        for (String user : id_list) {
+            int cnt = 0;
+            for (String bannedUser : bannedUsers) {
+                if (reportMap.get(user).contains(bannedUser)) {
+                    cnt++;
                 }
             }
+            resultMap.put(user, cnt);
         }
 
-        return answer.stream().mapToInt(i -> i).toArray();
+        return Arrays.stream(id_list)
+                .mapToInt(resultMap::get)
+                .toArray();
     }
 }
