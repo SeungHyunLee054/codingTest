@@ -3,12 +3,13 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         String[] sArr = s.split(" ", -1);
 
+        int lastWord = sArr.length - 1;
+        while (lastWord >= 0 && sArr[lastWord].isEmpty()) {
+            lastWord--;
+        }
+
         for (int i = 0; i < sArr.length; i++) {
             if (sArr[i].isEmpty()) {
-                if (i == sArr.length - 1) {
-                    break;
-                }
-
                 sb.append(" ");
                 continue;
             }
@@ -21,7 +22,7 @@ class Solution {
                         .append(sArr[i].substring(1).toLowerCase());
             }
 
-            if (i < sArr.length - 1) {
+            if (i < lastWord) {
                 sb.append(" ");
             }
         }
