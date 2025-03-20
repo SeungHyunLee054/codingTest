@@ -10,6 +10,7 @@ class Solution {
                 list.add(i);
             }
         }
+        
         int width = 0;
         int height = 0;
         for (int i : list) {
