@@ -24,6 +24,7 @@ class Solution {
                     } else if (stack.peek().equals("[") && subSp.equals("]")) {
                         stack.pop();
                     } else {
+                        flag = false;
                         break;
                     }
                 }
@@ -38,5 +39,10 @@ class Solution {
         }
 
         return answer;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.solution("[](){}"));
     }
 }
