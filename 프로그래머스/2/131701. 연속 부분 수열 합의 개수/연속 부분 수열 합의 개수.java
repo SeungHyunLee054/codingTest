@@ -13,8 +13,7 @@ class Solution {
         Set<Integer> set = new HashSet<>();
         for (int i = 1; i <= elements.length; i++) {
             for (int j = 0; j < elements.length; j++) {
-//                set.add(Arrays.stream(newElements, j, j + i).sum());
-                set.add(Arrays.stream(newElements).skip(j).limit(i).sum());
+                set.add(Arrays.stream(newElements, j, j + i).sum());
             }
         }
 
