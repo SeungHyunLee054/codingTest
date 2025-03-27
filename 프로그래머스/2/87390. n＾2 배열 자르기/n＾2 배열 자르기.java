@@ -1,14 +1,14 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class Solution {
     public int[] solution(int n, long left, long right) {
-        int len = (int) (right - left);
-        int[] answer = new int[len + 1];
+        List<Integer> list = new ArrayList<>();
 
-        int idx = 0;
         for (long i = left; i <= right; i++) {
-            answer[idx] = (int) (Math.max(i / n, i % n) + 1);
-            idx++;
+            list.add((int) (Math.max(i / n, i % n) + 1));
         }
 
-        return answer;
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
