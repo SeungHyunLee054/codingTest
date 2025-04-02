@@ -2,54 +2,51 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 class Solution {
+	int[] fees;
+	Map<String, List<Integer>> times = new HashMap<>();
+
 	public int[] solution(int[] fees, String[] records) {
-		Map<String, Map<String, List<Integer>>> map = new HashMap<>();
+		this.fees = fees;
 
 		for (String record : records) {
 			String[] rs = record.split(" ");
 			String[] ts = rs[0].split(":");
 			int time = Integer.parseInt(ts[0]) * 60 + Integer.parseInt(ts[1]);
 
-			map.put(rs[1], map.getOrDefault(rs[1], new HashMap<>()));
-			map.get(rs[1]).put(rs[2], map.get(rs[1]).getOrDefault(rs[2], new ArrayList<>()));
-			map.get(rs[1]).get(rs[2]).add(time);
-			if (!map.get(rs[1]).containsKey("OUT")) {
-				map.get(rs[1]).put("OUT", new ArrayList<>());
-			}
+			times.putIfAbsent(rs[1], new ArrayList<>());
+			times.get(rs[1]).add(time);
 		}
 
-		Map<String, Integer> res = new HashMap<>();
+		Map<String, Integer> fee = getFee();
 
-		for (Map.Entry<String, Map<String, List<Integer>>> entry : map.entrySet()) {
-			List<Integer> out = entry.getValue().get("OUT");
-			List<Integer> in = entry.getValue().get("IN");
-			if (out.size() < in.size()) {
-				out.add(23 * 60 + 59);
+		return fee.entrySet().stream()
+			.sorted(Map.Entry.comparingByKey())
+			.mapToInt(Map.Entry::getValue)
+			.toArray();
+	}
+
+	private Map<String, Integer> getFee() {
+		Map<String, Integer> result = new HashMap<>();
+		for (Map.Entry<String, List<Integer>> entry : times.entrySet()) {
+			List<Integer> values = entry.getValue();
+			if (values.size() % 2 != 0) {
+				values.add(23 * 60 + 59);
 			}
 
-			int countTime = 0;
-			for (int i = 0; i < out.size(); i++) {
-				countTime += out.get(i) - in.get(i);
+			int totalTime = 0;
+			for (int i = 0; i < values.size(); i += 2) {
+				totalTime += values.get(i + 1) - values.get(i);
 			}
 
-			int fee = 0;
-			if (countTime > fees[0]) {
-				countTime -= fees[0];
-				fee += fees[1];
-				fee += countTime % fees[2] == 0 ? (countTime / fees[2]) * fees[3] :
-					countTime / fees[2] * fees[3] + fees[3];
-			} else {
-				fee += fees[1];
+			int fee = fees[1];
+			if (totalTime > fees[0]) {
+				fee += (int)(Math.ceil((double)(totalTime - fees[0]) / fees[2]) * fees[3]);
 			}
-			res.put(entry.getKey(), fee);
+
+			result.put(entry.getKey(), fee);
 		}
-
-		List<Integer> resList =
-			res.keySet().stream().sorted().map(res::get).collect(Collectors.toUnmodifiableList());
-
-		return resList.stream().mapToInt(i -> i).toArray();
+		return result;
 	}
 }
