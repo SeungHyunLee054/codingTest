@@ -1,19 +1,28 @@
 class Solution {
+	private static final String VOWELS = "AEIOU";
+	private int count = 0;
+	private int result = 0;
+
 	public int solution(String word) {
-		String dic = "AEIOU";
-		int[] weights = new int[5];
+		dfs("", word);
+		return result;
+	}
 
-		for (int i = 0; i < weights.length; i++) {
-			for (int j = 0; j < 5 - i; j++) {
-				weights[i] += (int)Math.pow(5, j);
-			}
+	private void dfs(String current, String target) {
+		if (current.equals(target)) {
+			result = count;
+			return;
 		}
 
-		int answer = 0;
-		for (int i = 0; i < word.length(); i++) {
-			answer += dic.indexOf(word.charAt(i)) * weights[i] + 1;
+		if (current.length() == 5) {
+			return;
 		}
 
-		return answer;
+		for (int i = 0; i < VOWELS.length(); i++) {
+			count++;
+			dfs(current + VOWELS.charAt(i), target);
+			if (result != 0)
+				return;
+		}
 	}
 }
