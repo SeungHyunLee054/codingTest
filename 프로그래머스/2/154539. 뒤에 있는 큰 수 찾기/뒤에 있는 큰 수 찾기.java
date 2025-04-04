@@ -8,8 +8,7 @@ class Solution {
 
 		for (int i = 0; i < n; i++) {
 			while (!stack.isEmpty() && numbers[stack.peek()] < numbers[i]) {
-				int idx = stack.pop();
-				answer[idx] = numbers[i];
+				answer[stack.pop()] = numbers[i];
 			}
 
 			stack.push(i);
