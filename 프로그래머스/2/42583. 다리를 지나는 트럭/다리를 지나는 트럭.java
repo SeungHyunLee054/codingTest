@@ -1,23 +1,31 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 class Solution {
 	public int solution(int bridge_length, int weight, int[] truck_weights) {
-		Queue<int[]> queue = new LinkedList<>();
+		Map<Integer, Integer> passingTrucks = new LinkedHashMap<>();
 		int time = 0;
-		int curtWeight = 0;
 		int idx = 0;
+		int currentWeight = 0;
 
-		while (idx < truck_weights.length || !queue.isEmpty()) {
+		while (idx < truck_weights.length || !passingTrucks.isEmpty()) {
 			time++;
 
-			if (!queue.isEmpty() && time - queue.peek()[1] >= bridge_length) {
-				curtWeight -= queue.poll()[0];
+			Iterator<Map.Entry<Integer, Integer>> it = passingTrucks.entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry<Integer, Integer> entry = it.next();
+				if (time - entry.getValue() >= bridge_length) {
+					currentWeight -= truck_weights[entry.getKey()];
+					it.remove();
+				} else {
+					break;
+				}
 			}
 
-			if (idx < truck_weights.length && curtWeight + truck_weights[idx] <= weight) {
-				queue.offer(new int[] {truck_weights[idx], time});
-				curtWeight += truck_weights[idx];
+			if (idx < truck_weights.length && currentWeight + truck_weights[idx] <= weight) {
+				passingTrucks.put(idx, time);
+				currentWeight += truck_weights[idx];
 				idx++;
 			}
 		}
