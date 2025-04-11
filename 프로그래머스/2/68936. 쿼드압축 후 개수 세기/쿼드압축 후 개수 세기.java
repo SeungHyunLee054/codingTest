@@ -26,14 +26,11 @@ class Solution {
 
 		int half = size / 2;
 		int[] result = new int[] {0, 0};
-		int[] dx = {0, half};
-		int[] dy = {half, 0};
-		for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < 2; j++) {
-				int[] tmp = compress(arr, x + dx[i], y + dy[j], half);
-				result[0] += tmp[0];
-				result[1] += tmp[1];
-			}
+		int[][] directions = {{0, 0}, {0, half}, {half, 0}, {half, half}};
+		for (int[] direction : directions) {
+			int[] tmp = compress(arr, x + direction[0], y + direction[1], half);
+			result[0] += tmp[0];
+			result[1] += tmp[1];
 		}
 
 		return result;
