@@ -23,7 +23,7 @@ class Solution {
 		}
 
 		int cnt = 0;
-		while (cnt <= queue1.length * 3) {
+		while (cnt <= 600000) {
 			if (sum1 == sum2) {
 				return cnt;
 			}
