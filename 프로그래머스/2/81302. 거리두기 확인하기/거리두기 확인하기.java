@@ -21,7 +21,7 @@ class Solution {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
 				if (place[i].charAt(j) == 'P') {
-					if (!bfs(place, i, j)) {
+					if (!check(place, i, j)) {
 						return 0;
 					}
 				}
@@ -31,7 +31,7 @@ class Solution {
 		return 1;
 	}
 
-	private boolean bfs(String[] place, int x, int y) {
+	private boolean check(String[] place, int x, int y) {
 		for (int[] d : dir1) {
 			int nx = x + d[0];
 			int ny = y + d[1];
@@ -54,7 +54,7 @@ class Solution {
 			int nx = x + d[0];
 			int ny = y + d[1];
 			if (nx >= 0 && nx < 5 && ny >= 0 && ny < 5 && place[nx].charAt(ny) == 'P') {
-				if (!(place[x].charAt(ny) == 'X' && place[nx].charAt(y) == 'X')) {
+				if (place[x].charAt(ny) != 'X' || place[nx].charAt(y) != 'X') {
 					return false;
 				}
 			}
