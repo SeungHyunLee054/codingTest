@@ -1,8 +1,10 @@
 -- 코드를 입력하세요
-WITH RECURSIVE hours AS (
-    SELECT 0 AS hour
-    UNION ALL
-    SELECT hour + 1 FROM hours WHERE hour < 23
+with recursive hours as (
+    select 0 as hour
+    union
+    select hour + 1 
+    from hours 
+    where hour < 23
 )
 SELECT h.hour as 'HOUR', count(o.DATETIME) as 'COUNT'
 from hours h
