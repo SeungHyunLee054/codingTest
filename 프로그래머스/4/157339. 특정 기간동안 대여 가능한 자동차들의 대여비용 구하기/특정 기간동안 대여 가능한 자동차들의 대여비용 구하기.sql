@@ -7,7 +7,7 @@ join CAR_RENTAL_COMPANY_DISCOUNT_PLAN d
 on c.CAR_TYPE = d.CAR_TYPE
 where c.CAR_ID not in (select CAR_ID
                        from CAR_RENTAL_COMPANY_RENTAL_HISTORY
-                       where END_DATE >= '2022-11-01' and START_DATE <='2022-12-01')
+                       where END_DATE >= '2022-11-01' and START_DATE <= '2022-11-30')
 and d.DURATION_TYPE = '30일 이상'
 group by c.CAR_ID
 having c.CAR_TYPE in ('세단', 'SUV')
