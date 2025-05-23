@@ -5,7 +5,7 @@ class Solution {
 		for (int i = 0; i < name.length(); i++) {
 			char cur = name.charAt(i);
 
-			answer += Math.min(Math.abs(cur - 'A'), Math.abs('Z' - cur + 1));
+			answer += Math.min(cur - 'A', 'Z' - cur + 1);
 		}
 
 		int move = name.length() - 1;
