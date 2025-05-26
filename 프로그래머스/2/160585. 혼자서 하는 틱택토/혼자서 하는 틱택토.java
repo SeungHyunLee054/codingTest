@@ -1,22 +1,19 @@
+import java.util.Arrays;
+
 class Solution {
 	String[] board;
 
 	public int solution(String[] board) {
 		this.board = board;
 
-		int oCnt = 0;
-		int xCnt = 0;
-		for (String b : board) {
-			for (int j = 0; j < b.length(); j++) {
-				if (b.charAt(j) == 'O') {
-					oCnt++;
-				}
-
-				if (b.charAt(j) == 'X') {
-					xCnt++;
-				}
-			}
-		}
+		int oCnt = (int)Arrays.stream(board)
+			.flatMapToInt(String::chars)
+			.filter(c -> c == 'O')
+			.count();
+		int xCnt = (int)Arrays.stream(board)
+			.flatMapToInt(String::chars)
+			.filter(c -> c == 'X')
+			.count();
 
 		if (xCnt > oCnt || oCnt - xCnt > 1) {
 			return 0;
