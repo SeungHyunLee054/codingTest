@@ -10,6 +10,5 @@ select s.user_id,
            else round(ifnull(c.confirmed_count, 0) / ifnull(c.total_count, 0), 2)
            end as confirmation_rate
 from Signups s
-         left join confirmed c
-                   on s.user_id = c.user_id
+left join confirmed c on s.user_id = c.user_id
 ;
