@@ -10,28 +10,28 @@ class Solution {
 			int bY = balls[i][1];
 			List<Integer> list = new ArrayList<>();
 
-			if (!(bY == startY && bX < startX)) {
+			if (bY != startY || bX >= startX) {
 				int mx = -bX;
 				int my = bY;
 				int distance = calDistance(startX, startY, mx, my);
 				list.add(distance);
 			}
 
-			if (!(bY == startY && bX > startX)) {
+			if (bY != startY || bX <= startX) {
 				int mx = 2 * m - bX;
 				int my = bY;
 				int distance = calDistance(startX, startY, mx, my);
 				list.add(distance);
 			}
 
-			if (!(bX == startX && bY < startY)) {
+			if (bX != startX || bY >= startY) {
 				int mx = bX;
 				int my = -bY;
 				int distance = calDistance(startX, startY, mx, my);
 				list.add(distance);
 			}
 
-			if (!(bX == startX && bY > startY)) {
+			if (bX != startX || bY <= startY) {
 				int mx = bX;
 				int my = 2 * n - bY;
 				int distance = calDistance(startX, startY, mx, my);
