@@ -19,20 +19,19 @@ class Solution {
 						int currD = d;
 
 						while (true) {
-							if (visited[currR][currC][currD]) {
-								if (currR == r && currC == c && currD == d) {
-									cycles.add(len);
-								}
+							if (visited[currR][currC][currD] && (currR == r && currC == c && currD == d)) {
+								cycles.add(len);
 								break;
 							}
 
 							visited[currR][currC][currD] = true;
 							char instr = grid[currR].charAt(currC);
 
-							if (instr == 'L')
+							if (instr == 'L') {
 								currD = (currD + 3) % 4;
-							else if (instr == 'R')
+							} else if (instr == 'R') {
 								currD = (currD + 1) % 4;
+							}
 
 							int[] dir = dirs[currD];
 							currR = (currR + dir[0] + rows) % rows;
