@@ -3,8 +3,6 @@ import java.util.PriorityQueue;
 
 class Solution {
 	public int[] solution(String[] operations) {
-		int[] answer = {};
-
 		PriorityQueue<Integer> max = new PriorityQueue<>(Collections.reverseOrder());
 		PriorityQueue<Integer> min = new PriorityQueue<>();
 		for (String operation : operations) {
