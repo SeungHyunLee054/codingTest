@@ -10,8 +10,7 @@ class Solution {
 
 		for (int i = 0; i < genres.length; i++) {
 			genTotal.put(genres[i], genTotal.getOrDefault(genres[i], 0) + plays[i]);
-			genSong.put(genres[i], genSong.getOrDefault(genres[i], new ArrayList<>()));
-			genSong.get(genres[i]).add(new int[] {plays[i], i});
+			genSong.computeIfAbsent(genres[i], k -> new ArrayList<>()).add(new int[] {plays[i], i});
 		}
 
 		List<Map.Entry<String, Integer>> list = new ArrayList<>(genTotal.entrySet());
