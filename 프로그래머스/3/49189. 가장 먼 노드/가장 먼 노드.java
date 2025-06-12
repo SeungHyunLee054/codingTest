@@ -6,8 +6,6 @@ import java.util.Queue;
 
 class Solution {
 	public int solution(int n, int[][] edge) {
-		int answer = 0;
-
 		List<List<Integer>> graph = new ArrayList<>();
 		for (int i = 0; i <= n; i++) {
 			graph.add(new ArrayList<>());
@@ -35,19 +33,8 @@ class Solution {
 			}
 		}
 
-		int max = 0;
-		for (int i = 1; i <= n; i++) {
-			if (dist[i] > max) {
-				max = dist[i];
-			}
-		}
+		int max = Arrays.stream(dist).max().getAsInt();
 
-		for (int i = 1; i <= n; i++) {
-			if (dist[i] == max) {
-				answer++;
-			}
-		}
-
-		return answer;
+		return (int)Arrays.stream(dist).filter(x -> x == max).count();
 	}
 }
