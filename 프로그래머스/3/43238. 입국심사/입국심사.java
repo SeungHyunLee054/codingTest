@@ -5,7 +5,7 @@ class Solution {
 		long answer = 0;
 
 		Arrays.sort(times);
-		long left = 0;
+		long left = 1;
 		long right = (long)times[times.length - 1] * n;
 
 		while (left <= right) {
