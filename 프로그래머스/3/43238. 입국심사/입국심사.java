@@ -11,8 +11,8 @@ class Solution {
 		while (left <= right) {
 			long mid = (left + right) / 2;
 			long total = 0;
-			for (int i = 0; i < times.length; i++) {
-				total += mid / times[i];
+			for (int time : times) {
+				total += mid / time;
 			}
 
 			if (total >= n) {
