@@ -9,7 +9,7 @@ from (
 ) c
 left join Accounts a
 on (c.category = 'Low Salary' and a.income < 20000) 
-or (c.category = 'Average Salary' and a.income >= 20000 and a.income < 50000) 
-or (c.category = 'High Salary' and a.income >= 50000)
+or (c.category = 'Average Salary' and a.income >= 20000 and a.income <= 50000) 
+or (c.category = 'High Salary' and a.income > 50000)
 group by c.category
 ;
