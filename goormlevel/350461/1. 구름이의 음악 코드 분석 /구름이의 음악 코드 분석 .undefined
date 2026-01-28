@@ -1,0 +1,28 @@
+import java.io.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String input = br.readLine();
+
+		int n = Integer.valueOf(input);
+		int cnt = 0;
+		for(int i=1; i<=n; i++){
+			if(i>=100&&isHan(i)){
+				cnt++;
+			}else if(i<100){
+				cnt++;
+			}
+		}
+		
+		// System.out.println("Hello World! Your input is " + input);
+		System.out.println(cnt);
+	}
+
+	private static boolean isHan(int num){
+		int a = num/100;
+		int b = (num/10)%10;
+		int c = num%10;
+
+		return b-a == c-b;
+	}
+}
