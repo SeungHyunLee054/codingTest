@@ -1,0 +1,32 @@
+import java.io.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String input = br.readLine();
+
+		String[] sArr = input.split(" ");
+
+		int m = Integer.valueOf(sArr[0]);
+		int s = Integer.valueOf(sArr[1]);
+
+		int cnt=0;
+		for(int i=1;i<=m;i++){
+			if(calM(i)==s){
+				cnt++;
+			}
+		}
+		
+		// System.out.println("Hello World! Your input is " + input);
+		System.out.println(cnt);
+	}
+
+	private static int calM(int m){
+		int a=0;
+		while(m>0){
+			a+=m%10;
+			m/=10;
+		}
+
+		return a;
+	}
+}
