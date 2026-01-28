@@ -1,0 +1,25 @@
+import java.io.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String inputB = br.readLine();
+		String inputS = br.readLine();
+		String inputG = br.readLine();
+		String inputP = br.readLine();
+		
+		String[] bArr = inputB.split(" ");
+		String[] sArr = inputS.split(" ");
+		String[] gArr = inputG.split(" ");
+		String[] pArr = inputP.split(" ");
+
+		int x = Integer.valueOf(bArr[0]) - Integer.valueOf(bArr[1]);
+		int y = Integer.valueOf(sArr[0]) - Integer.valueOf(sArr[1]);
+		int z = Integer.valueOf(gArr[0]) - Integer.valueOf(gArr[1]);
+
+		
+		// System.out.println("Hello World! Your input is " + input);
+		System.out.println(x);
+		System.out.println(y);
+		System.out.println(z);
+	}
+}
