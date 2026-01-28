@@ -1,0 +1,30 @@
+import java.io.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String input = br.readLine();
+
+		input = upDown(input);
+		
+		// System.out.println("Hello World! Your input is " + input);
+		System.out.println(input);
+	}
+
+	private static String upDown(String input){
+		StringBuilder sb = new StringBuilder();
+		
+		for(char c: input.toCharArray()){
+			if(c=='6'){
+				c='9';
+				sb.append(c);
+			}else if(c=='9'){
+				c='6';
+				sb.append(c);
+			}else{
+				sb.append(c);
+			}
+		}
+
+		return sb.reverse().toString();
+	}
+}
